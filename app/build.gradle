@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.2"
 
     defaultConfig {
         applicationId 'net.supware.tipro'
@@ -24,16 +23,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
     productFlavors {
     }
-
-    lintOptions {
+    namespace 'net.supware.tipro'
+    lint {
         abortOnError false
     }
+
 }
 
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:28.0.0'
-    compile 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
 }
